@@ -52,6 +52,8 @@ The contact email is never committed. It comes from `NEXT_PUBLIC_CONTACT_EMAIL`
 
 - Portrait: `src/assets/portrait.webp` (4:5 crop of the owner's headshot), used in the hero
   plate and the home OG card. Project screenshots live in `src/assets/work/`.
+- Favicons: `npm run icons:build` regenerates `src/app/favicon.ico` and `public/icon-*.png`;
+  `src/app/icon.svg` only regenerates with `npm i --no-save satori` (kept out of deps).
 - Resume preview: `npm run resume:build` regenerates `public/resume.pdf` and
   `src/assets/resume-preview.webp` (needs TeX + poppler locally). Contact details live in
   the gitignored `resume/contact.tex`.
