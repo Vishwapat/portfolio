@@ -1,29 +1,248 @@
 @import "tailwindcss";
 
+/*
+ * palette rationale
+ * light: warm paper instead of white cuts glare in daylight and reads as print, not app.
+ *        ink navy text signals competence and calm; burnt amber is the single accent,
+ *        the complement of navy, so calls to action are the first thing the eye finds.
+ * dark:  deep blue black instead of pure black avoids halation on oled screens;
+ *        warm off white text lowers eye strain at night; amber reads like a desk lamp.
+ * every text pairing below clears wcag aa (4.5:1) in its theme.
+ */
 :root {
-  --bg: #f7f4ee;
-  --fg: #141824;
-  --muted: #545a6b;
+  --bg: #f6f3ec;
+  --bg-sunk: #eeeae0;
+  --fg: #12172a;
+  --fg-soft: #2b3145;
+  --muted: #565c6e;
+  --rule: #d6d0c2;
+  --rule-strong: #12172a;
+  --accent: #b4400b;
+  --accent-ink: #ffffff;
+  --focus: #b4400b;
+  --tab-bar-h: 64px;
+  color-scheme: light;
 }
 
+:root[data-theme="dark"] {
+  --bg: #0b0e16;
+  --bg-sunk: #10141f;
+  --fg: #ece7de;
+  --fg-soft: #cdc8bf;
+  --muted: #959bad;
+  --rule: #252a39;
+  --rule-strong: #ece7de;
+  --accent: #f2a33a;
+  --accent-ink: #0b0e16;
+  --focus: #f2a33a;
+  color-scheme: dark;
+}
+
+/* no js fallback follows the system */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0c0f17;
-    --fg: #ece8e1;
-    --muted: #9aa0b2;
+  :root:not([data-theme]) {
+    --bg: #0b0e16;
+    --bg-sunk: #10141f;
+    --fg: #ece7de;
+    --fg-soft: #cdc8bf;
+    --muted: #959bad;
+    --rule: #252a39;
+    --rule-strong: #ece7de;
+    --accent: #f2a33a;
+    --accent-ink: #0b0e16;
+    --focus: #f2a33a;
+    color-scheme: dark;
   }
 }
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme inline {
   --color-bg: var(--bg);
+  --color-bg-sunk: var(--bg-sunk);
   --color-fg: var(--fg);
+  --color-fg-soft: var(--fg-soft);
   --color-muted: var(--muted);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+
+  --text-display: clamp(2.75rem, 1.6rem + 5.6vw, 6.25rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.025em;
+  --text-title: clamp(2.25rem, 1.5rem + 3.6vw, 4.5rem);
+  --text-title--line-height: 1.02;
+  --text-title--letter-spacing: -0.02em;
+  --text-label: 0.72rem;
+  --text-label--letter-spacing: 0.14em;
 }
 
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--font-sans), system-ui, sans-serif;
+@layer base {
+  html {
+    background: var(--bg);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    min-height: 100dvh;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  /* ios zooms into inputs under 16px */
+  input,
+  select,
+  textarea {
+    font-size: max(16px, 1rem);
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  /* small uppercase mono label used for indices and metadata */
+  .label {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: var(--text-label--letter-spacing);
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* safe area aware horizontal gutter */
+  .gutter {
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+  }
+
+  @media (min-width: 768px) {
+    .gutter {
+      padding-left: max(2.5rem, env(safe-area-inset-left));
+      padding-right: max(2.5rem, env(safe-area-inset-right));
+    }
+  }
+
+  /* print style crop marks around a figure */
+  .crop-marks {
+    position: relative;
+  }
+
+  .crop-marks::before,
+  .crop-marks::after {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    pointer-events: none;
+    background:
+      linear-gradient(var(--fg), var(--fg)) top left / 14px 1px no-repeat,
+      linear-gradient(var(--fg), var(--fg)) top left / 1px 14px no-repeat,
+      linear-gradient(var(--fg), var(--fg)) top right / 14px 1px no-repeat,
+      linear-gradient(var(--fg), var(--fg)) top right / 1px 14px no-repeat;
+  }
+
+  .crop-marks::after {
+    background:
+      linear-gradient(var(--fg), var(--fg)) bottom left / 14px 1px no-repeat,
+      linear-gradient(var(--fg), var(--fg)) bottom left / 1px 14px no-repeat,
+      linear-gradient(var(--fg), var(--fg)) bottom right / 14px 1px no-repeat,
+      linear-gradient(var(--fg), var(--fg)) bottom right / 1px 14px no-repeat;
+  }
+
+  /* underline that draws in from the left on hover and focus */
+  .link-draw {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 300ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .link-draw:hover,
+  .link-draw:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  /* page content rises in on first paint */
+  .rise {
+    animation: rise 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(var(--i, 0) * 70ms);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 55%, transparent);
+  }
+  60% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2.4s ease-out infinite;
+}
+
+/* route transitions through react view transitions */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 260ms;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+::view-transition-group(.title-morph) {
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }
