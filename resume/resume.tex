@@ -1,0 +1,135 @@
+%% resume of vishwa patel
+%% build: npm run resume:build  (latexmk, pdflatex)
+\documentclass[10pt,letterpaper]{article}
+
+%% page and fonts
+\usepackage[letterpaper,top=0.45in,bottom=0.4in,left=0.55in,right=0.55in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[default,semibold]{sourcesans}
+\usepackage[final]{microtype}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{accsupp}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage[hidelinks,pdfusetitle]{hyperref}
+
+%% keep text extractable for applicant tracking systems
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\hypersetup{
+  pdftitle={Vishwa Patel - Resume},
+  pdfauthor={Vishwa Patel},
+  pdfsubject={Software engineering resume},
+  pdfkeywords={software engineer, computer science, fintech, TypeScript, Python, React, Next.js}
+}
+
+%% palette: ink navy for structure, burnt amber for one accent
+\definecolor{ink}{HTML}{141824}
+\definecolor{navy}{HTML}{1F2A44}
+\definecolor{muted}{HTML}{545A6B}
+\definecolor{accent}{HTML}{B4400B}
+\definecolor{rule}{HTML}{C9C3B6}
+
+\color{ink}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{0pt}
+\linespread{1.02}
+
+%% section headings
+\titleformat{\section}
+  {\color{navy}\bfseries\scshape\large}
+  {}{0pt}{}[\vspace{1.5pt}{\color{rule}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{9pt}{3pt}
+
+%% lists
+\setlist[itemize]{leftmargin=1.05em,label={\color{accent}\scriptsize\raisebox{0.25ex}{$\blacktriangleright$}},itemsep=1.2pt,topsep=2pt,parsep=0pt,partopsep=0pt}
+
+%% helpers
+\newcommand{\entry}[3]{%
+  \vspace{3pt}{\bfseries\color{navy}#1}{\color{rule}\enspace|\enspace}#2\hfill{\color{muted}#3}\par\vspace{1pt}}
+\newcommand{\project}[3]{%
+  \vspace{3pt}{\bfseries\color{navy}#1}\enspace{\small #2}\hfill{\small\color{muted}\itshape #3}\par\vspace{1pt}}
+%% icons are decorative; hide them from text extraction so ats parsers see clean text
+\newcommand{\icon}[1]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}
+\newcommand{\link}[3]{\href{#1}{\color{ink}{\color{accent}\icon{#2}}\,#3}}
+\newcommand{\sep}{\enspace{\color{rule}|}\enspace}
+\newcommand{\kw}[1]{\textbf{#1}}
+
+\begin{document}
+
+%% header
+{\fontsize{26}{28}\selectfont\bfseries\color{navy}Vishwa Patel}\par
+\vspace{3pt}
+{\large\color{muted}Computer Science at Western \textbullet{} LLQP licensed \textbullet{} I build software for how people manage money}\par
+\vspace{5pt}
+{\small
+\link{https://vishwapat.vercel.app}{\faGlobe}{vishwapat.vercel.app}\sep
+\link{https://github.com/Vishwapat}{\faGithub}{github.com/Vishwapat}\sep
+\link{https://www.linkedin.com/in/vishwa-p-518408328/}{\faLinkedin}{linkedin.com/in/vishwa-p-518408328}\par\vspace{1.5pt}
+\IfFileExists{contact.tex}{\input{contact}}{}%
+{\color{accent}\icon{\faMapMarker*}}\,Brampton, ON}
+\par\vspace{2pt}
+
+\section{Education}
+\entry{Western University}{B.Sc. Computer Science, Specialization \& Minor in Software Engineering}{London, ON \enspace Expected Jun 2028}
+\vspace{-1pt}
+{\small\kw{Coursework:} Data Structures \& Algorithms, Databases, Software Engineering, Data Science, Discrete Mathematics, Logic}
+
+\section{Projects}
+\project{Registered Accounts Optimizer}{\link{https://github.com/Vishwapat/registered-accounts-optimizer}{\faGithub}{source}}{React, Express, PostgreSQL, Jest, GitHub Actions}
+\begin{itemize}
+  \item Turned licensed advisor practice into code: a \kw{savings allocation engine} that splits income across TFSA, RRSP and FHSA by applying \kw{federal and Ontario marginal tax brackets} to rank every dollar.
+  \item Guaranteed correct results on every allocation path, backed by \kw{18 automated tests} (Jest, Supertest), by isolating all tax and growth math in a pure engine with no I/O and running the suite in \kw{CI on every push}.
+  \item Shipped a \kw{REST API} with \kw{JWT authentication} and PostgreSQL saved scenarios, consumed by a React client that charts compound growth year by year.
+\end{itemize}
+
+\project{Stock Market Dashboard}{\link{https://stock-market-dashboard-b8yxfqbmw8yjd3gmcyiah6.streamlit.app/}{\faExternalLink*}{live demo}\enspace\link{https://github.com/Vishwapat/stock-market-dashboard}{\faGithub}{source}}{Python, Streamlit, pandas, scikit-learn}
+\begin{itemize}
+  \item Deployed a \kw{live market analytics dashboard} that analyzes any US or Canadian ticker in seconds with zero setup, streaming prices through the yfinance API.
+  \item Surfaced trend and risk signals for investors with \kw{4 moving average windows} (20, 50, 100, 200 day), daily return charts and \kw{annualized rolling volatility}.
+  \item Quantified price direction with \kw{linear regression}, reporting slope and $R^2$ so users can judge how reliable a trend is.
+\end{itemize}
+
+\project{Personal Portfolio Platform}{\link{https://github.com/Vishwapat/portfolio}{\faGithub}{source}}{Next.js 16, TypeScript, Vercel, Playwright}
+\begin{itemize}
+  \item Built a statically rendered, multi page portfolio with \kw{continuous deployment} on Vercel, where every push ships only after lint, strict type checks, unit tests and \kw{end to end tests on desktop and iPhone WebKit} pass.
+  \item Hardened the pipeline like production software with \kw{CodeQL}, OpenSSF Scorecard, SHA pinned Actions and a strict \kw{Content Security Policy}.
+\end{itemize}
+
+\section{Experience}
+\entry{World Financial Group}{Licensed Financial Associate}{Ontario \enspace 2024 -- Present}
+\begin{itemize}
+  \item Earned the \kw{LLQP licence} while studying full time, authorizing advice on life insurance, TFSA, RRSP and FHSA products.
+  \item Run client \kw{needs assessments} that turn income, goals and risk into coverage and savings plans, the same reasoning I later encoded in the Registered Accounts Optimizer.
+  \item Grow long term client relationships through structured follow up and plain language explanations of complex financial products.
+\end{itemize}
+
+\entry{Fortinos}{Customer Service \& Bakery Associate}{Mississauga, ON \enspace May 2022 -- Aug 2024}
+\begin{itemize}
+  \item Kept checkout fast and accurate through \kw{2+ years} of high traffic shifts, owning every cash and POS transaction with a balanced till.
+  \item Held high volume bakery output on schedule at peak hours by running commercial deck and rack ovens to food safety and sanitation standards.
+\end{itemize}
+
+\section{Leadership}
+\entry{Academy of Martial Arts}{Teaching Assistant}{Brampton, ON \enspace Sep 2019 -- Jul 2023}
+\begin{itemize}
+  \item Helped retain \kw{50+ active members} over \kw{4 years} by co-instructing classes from children to adults and adapting each lesson to age and skill level.
+  \item Ran registration, scheduling and parent communication so new and returning families had a smooth start.
+\end{itemize}
+
+\section{Skills}
+{\small
+\begin{tabularx}{\linewidth}{@{}l@{\hspace{8pt}}X@{}}
+  \kw{Languages} & Python, TypeScript, JavaScript, Java, SQL, C++, C\#, HTML/CSS\\
+  \kw{Frameworks} & React, Next.js, Node.js, Express, Django, Tailwind CSS, Flutter, Streamlit\\
+  \kw{Data and ML} & pandas, NumPy, scikit-learn, matplotlib, Jupyter\\
+  \kw{Tooling} & Git, GitHub Actions, Vercel, AWS, PostgreSQL, SQLite, Jest, Playwright, LaTeX\\
+  \kw{Finance} & LLQP licensed, TFSA, RRSP, FHSA, client needs assessment\\
+\end{tabularx}}
+
+\end{document}
