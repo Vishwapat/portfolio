@@ -22,7 +22,7 @@ export function PortraitPlate({ photo, className }: PortraitPlateProps) {
             preload
             sizes="(min-width: 768px) 30vw, 70vw"
             placeholder="blur"
-            className="object-cover grayscale-[15%]"
+            className="object-cover object-top"
           />
         ) : (
           <div aria-hidden className="absolute inset-0 flex flex-col justify-between p-5">

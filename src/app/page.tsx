@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import portrait from "@/assets/portrait.webp";
 import { ButtonLink } from "@/components/ui/button-link";
 import { ArrowRight, Download } from "@/components/ui/icons";
 import { NextSheet } from "@/components/ui/next-sheet";
@@ -65,7 +66,7 @@ export default function HomePage() {
         </div>
 
         <div className="rise md:col-span-4 md:pt-24" style={delay(4)}>
-          <PortraitPlate className="ml-auto w-[62%] max-w-80 md:w-full" />
+          <PortraitPlate photo={portrait} className="ml-auto w-[62%] max-w-80 md:w-full" />
         </div>
       </section>
 

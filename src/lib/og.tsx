@@ -45,10 +45,12 @@ interface OgOptions {
   eyebrow: string;
   title: string;
   subtitle?: string;
+  /** data url of a 4:5 portrait shown on the right */
+  photo?: string;
 }
 
 /** shared 1200x630 share card in the title block style of the site */
-export async function renderOg({ sheet, eyebrow, title, subtitle }: OgOptions) {
+export async function renderOg({ sheet, eyebrow, title, subtitle, photo }: OgOptions) {
   return new ImageResponse(
     <div
       style={{
@@ -77,39 +79,52 @@ export async function renderOg({ sheet, eyebrow, title, subtitle }: OgOptions) {
         <span>vishwapat.vercel.app</span>
       </div>
       <div style={{ display: "flex", height: 1, background: rule, marginTop: 24 }} />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          flexGrow: 1,
-        }}
-      >
+      <div style={{ display: "flex", flexGrow: 1, alignItems: "center" }}>
         <div
           style={{
             display: "flex",
-            fontFamily: "Serif",
-            fontSize: title.length > 28 ? 84 : 112,
-            lineHeight: 1,
-            letterSpacing: -2,
-            maxWidth: 1000,
+            flexDirection: "column",
+            justifyContent: "center",
+            flexGrow: 1,
+            flexShrink: 1,
           }}
         >
-          {title}
-        </div>
-        {subtitle ? (
           <div
             style={{
               display: "flex",
-              marginTop: 28,
-              fontSize: 30,
-              lineHeight: 1.35,
-              color: muted,
-              maxWidth: 940,
+              fontFamily: "Serif",
+              fontSize: title.length > 28 ? 84 : photo ? 100 : 112,
+              lineHeight: 1,
+              letterSpacing: -2,
+              maxWidth: photo ? 760 : 1000,
             }}
           >
-            {subtitle}
+            {title}
           </div>
+          {subtitle ? (
+            <div
+              style={{
+                display: "flex",
+                marginTop: 28,
+                fontSize: 30,
+                lineHeight: 1.35,
+                color: muted,
+                maxWidth: photo ? 740 : 940,
+              }}
+            >
+              {subtitle}
+            </div>
+          ) : null}
+        </div>
+        {photo ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={photo}
+            alt=""
+            width={272}
+            height={340}
+            style={{ marginLeft: 40, objectFit: "cover", border: `1px solid ${rule}` }}
+          />
         ) : null}
       </div>
       <div style={{ display: "flex", height: 1, background: rule }} />
@@ -144,4 +159,15 @@ export async function renderOg({ sheet, eyebrow, title, subtitle }: OgOptions) {
     </div>,
     { ...ogSize, fonts: await loadFonts() },
   );
+}
+
+/** portrait as a png data url, since the og renderer cannot decode webp */
+export async function loadPortrait(): Promise<string> {
+  "use cache";
+  const { default: sharp } = await import("sharp");
+  const png = await sharp(join(process.cwd(), "src/assets/portrait.webp"))
+    .resize(544, 680)
+    .png()
+    .toBuffer();
+  return `data:image/png;base64,${png.toString("base64")}`;
 }

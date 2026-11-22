@@ -12,7 +12,7 @@ export function MobileTabBar() {
   return (
     <nav
       aria-label="Primary mobile"
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-rule-strong bg-bg/[0.97] pb-[env(safe-area-inset-bottom)] backdrop-blur-md [-webkit-backdrop-filter:blur(12px)] md:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-rule-strong bg-bg pb-[env(safe-area-inset-bottom)] md:hidden"
     >
       <ul className="grid h-(--tab-bar-h) grid-cols-5">
         {nav.map((item) => {

@@ -2,6 +2,7 @@ import type { StaticImageData } from "next/image";
 import dashboard from "@/assets/work/dashboard.png";
 import optimizerForm from "@/assets/work/optimizer-form.png";
 import optimizerResults from "@/assets/work/optimizer-results.png";
+import portfolio from "@/assets/work/portfolio.png";
 
 export interface ProjectImage {
   src: StaticImageData;
@@ -137,6 +138,11 @@ export const projects: readonly Project[] = [
       { label: "Source", href: "https://github.com/Vishwapat/portfolio" },
       { label: "Live", href: "https://vishwapat.vercel.app" },
     ],
+    cover: {
+      src: portfolio,
+      alt: "The portfolio home page shown split in two, the light paper theme on the left and the dark ink theme on the right.",
+      caption: "One set of tokens, two themes: warm paper by day, deep ink by night.",
+    },
     problem:
       "A portfolio that only claims engineering skill is easy to ignore. I wanted the site itself to be the evidence: something a reviewer can open on GitHub and find held to the same bar as production code.",
     built: [

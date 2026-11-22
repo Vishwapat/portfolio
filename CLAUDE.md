@@ -48,6 +48,15 @@ Code comments lowercase, brief, no filler.
 The contact email is never committed. It comes from `NEXT_PUBLIC_CONTACT_EMAIL`
 (set in Vercel project env). The resume PDF is the only place it appears.
 
+## Assets
+
+- Portrait: `src/assets/portrait.webp` (4:5 crop of the owner's headshot), used in the hero
+  plate and the home OG card. Project screenshots live in `src/assets/work/`.
+- Resume preview: `npm run resume:build` regenerates `public/resume.pdf` and
+  `src/assets/resume-preview.webp` (needs TeX + poppler locally). Contact details live in
+  the gitignored `resume/contact.tex`.
+
 ## Pending from owner
 
-- Profile photo for the hero section (ask once at the end of a work session).
+- Optional: set `NEXT_PUBLIC_CONTACT_EMAIL` in Vercel to show email on /contact.
+- Optional: set `GOOGLE_SITE_VERIFICATION` after adding the site to Google Search Console.

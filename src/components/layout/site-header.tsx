@@ -4,16 +4,12 @@ import { ThemeToggle } from "./theme-toggle";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-rule bg-bg/[0.94] pt-[env(safe-area-inset-top)] backdrop-blur-md [-webkit-backdrop-filter:blur(12px)]">
+    <header className="sticky top-0 z-40 border-b border-rule bg-bg pt-[env(safe-area-inset-top)]">
       <nav
         aria-label="Primary"
         className="gutter mx-auto flex h-14 max-w-7xl items-center justify-between"
       >
-        <Link
-          href="/"
-          className="group flex min-h-11 items-center gap-3"
-          aria-label="Vishwa Patel, home"
-        >
+        <Link href="/" className="group flex min-h-11 items-center gap-3">
           <span
             aria-hidden
             className="grid size-7 place-items-center bg-fg font-serif text-[15px] leading-none text-bg transition-colors group-hover:bg-accent group-hover:text-accent-ink"

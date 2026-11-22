@@ -60,6 +60,7 @@ npm run dev    # http://localhost:3000
 ├── e2e/              Playwright specs (routing, a11y, mobile)
 ├── public/           static assets, including resume.pdf
 ├── resume/           LaTeX source for the resume
+├── scripts/          build helpers (resume preview renderer)
 └── src/
     ├── app/          routes, layouts, metadata, OG images
     ├── components/   UI, split by concern
