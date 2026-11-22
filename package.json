@@ -16,7 +16,8 @@
     "test:e2e": "playwright test",
     "resume:build": "latexmk -cd -pdf -interaction=nonstopmode -halt-on-error -outdir=out resume/resume.tex && cp resume/out/resume.pdf public/resume.pdf && node scripts/resume-preview.mjs",
     "validate": "npm run lint && npm run typecheck && npm run format:check && npm test",
-    "prepare": "husky"
+    "prepare": "husky",
+    "icons:build": "node scripts/favicons.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
