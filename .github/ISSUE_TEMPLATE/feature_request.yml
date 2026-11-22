@@ -1,0 +1,12 @@
+name: Suggestion
+description: An idea to improve the site.
+title: "feat: "
+labels: [enhancement, triage]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Idea
+      description: What would you change, and why would it help a visitor?
+    validations:
+      required: true

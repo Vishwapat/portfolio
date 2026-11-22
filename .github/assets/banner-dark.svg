@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320" role="img" aria-labelledby="t d">
+  <title id="t">Vishwa Patel</title>
+  <desc id="d">Portfolio of Vishwa Patel, software engineer. Built with Next.js, deployed on Vercel.</desc>
+  <rect width="1280" height="320" fill="#0C0F17"/>
+  <g stroke="#262B38" stroke-width="1">
+    <line x1="64" y1="56" x2="1216" y2="56"/>
+    <line x1="64" y1="264" x2="1216" y2="264"/>
+    <line x1="896" y1="56" x2="896" y2="264"/>
+  </g>
+  <text x="64" y="40" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" letter-spacing="2.5" fill="#9AA0B2">PORTFOLIO  /  SOURCE</text>
+  <text x="1216" y="40" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" letter-spacing="2.5" fill="#9AA0B2">VISHWAPAT.VERCEL.APP</text>
+  <text x="62" y="170" font-family="Georgia, 'Times New Roman', serif" font-size="92" letter-spacing="-2" fill="#ECE8E1">Vishwa Patel<tspan fill="#F59E0B">.</tspan></text>
+  <text x="66" y="222" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="24" fill="#9AA0B2">Software for how people actually manage money.</text>
+  <rect x="64" y="244" width="56" height="4" fill="#F59E0B"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#9AA0B2">
+    <text x="928" y="106">Next.js 16</text>
+    <text x="928" y="140">TypeScript, strict</text>
+    <text x="928" y="174">Tailwind CSS 4</text>
+    <text x="928" y="208">Vercel edge network</text>
+    <text x="928" y="242">LaTeX resume, built in CI</text>
+  </g>
+  <g fill="#F59E0B">
+    <rect x="910" y="98" width="6" height="6"/>
+    <rect x="910" y="132" width="6" height="6"/>
+    <rect x="910" y="166" width="6" height="6"/>
+    <rect x="910" y="200" width="6" height="6"/>
+    <rect x="910" y="234" width="6" height="6"/>
+  </g>
+  <text x="64" y="296" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" letter-spacing="2.5" fill="#9AA0B2">COMPUTER SCIENCE, WESTERN UNIVERSITY  /  LLQP LICENSED</text>
+</svg>

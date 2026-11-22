@@ -1,0 +1,37 @@
+name: Resume
+
+on:
+  push:
+    branches: [main]
+    paths: ["resume/**", ".github/workflows/resume.yml"]
+  pull_request:
+    paths: ["resume/**", ".github/workflows/resume.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compile:
+    name: Compile LaTeX
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: xu-cheng/latex-action@6549dc21effb2730855a1281407ecfcececc6c1b # 4.1.0
+        with:
+          root_file: resume.tex
+          working_directory: resume
+          latexmk_use_lualatex: false
+      - name: Enforce one page
+        run: |
+          pages=$(grep -c "/Type /Page[^s]" resume/resume.pdf || true)
+          echo "pages=$pages"
+          test "$pages" -le 1
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: resume-pdf
+          path: resume/resume.pdf
+          retention-days: 30
