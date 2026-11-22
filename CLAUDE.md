@@ -18,9 +18,13 @@ Repo https://github.com/Vishwapat/portfolio. Vercel project `vishwapat` (Hobby, 
   `viewport-fit=cover` plus `env(safe-area-inset-*)`, `100dvh`/`svh` not `100vh`,
   `theme-color` per scheme, 16px minimum input font, 44px touch targets,
   `-webkit-tap-highlight-color`, `-webkit-backdrop-filter`, no hover only affordances.
-- **Story first**: hook a recruiter in under 7 seconds. Positioning is
-  "CS student who also holds a financial licence and builds software for how people
-  manage money" (fintech angle: TFSA/RRSP/FHSA optimizer, stock dashboard, LLQP).
+- **Story first, NOT money centric**: hook a recruiter in under 7 seconds. Owner does
+  not only build finance software and has few projects so far. Positioning is range plus
+  rigour: full stack CS student who ships to production standards, taught for 4 years
+  (martial arts TA, 50+ members), earned a professional licence (LLQP) while studying.
+  Finance is one facet of the story, never the headline. The site itself is proof of rigour.
+- **Design concept**: engineering spec sheet / editorial. Ruled lines, mono index numbers,
+  title block details, serif display type. No finance or ledger metaphors.
 - **Palette**: no green. Warm paper light theme, deep ink navy dark theme, amber accent.
   Tokens live in `src/app/globals.css`. Must work day and night (system default, toggle).
 - **Images**: always `next/image`, static imports for blur placeholders.

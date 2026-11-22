@@ -2,7 +2,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/assets/banner-dark.svg">
-  <img src=".github/assets/banner-light.svg" alt="Vishwa Patel. Software for how people actually manage money." width="100%">
+  <img src=".github/assets/banner-light.svg" alt="Vishwa Patel. Software engineer, built to production standards." width="100%">
 </picture>
 
 <br />
@@ -19,7 +19,7 @@
 ## About
 
 The personal site of Vishwa Patel, a Computer Science student at Western University
-and LLQP licensed financial associate. It is built like production software: typed
+who builds full stack software and ships it to production standards. It is built like production software: typed
 content, static rendering, automated accessibility checks, and a resume typeset in
 LaTeX and compiled in CI.
 

@@ -3,7 +3,7 @@ export const site = {
   name: "Vishwa Patel",
   title: "Vishwa Patel | Software Engineer",
   description:
-    "Computer Science student at Western University building software for how people manage money.",
+    "Computer Science student at Western University who builds full stack software and ships it to production standards.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://vishwapat.vercel.app",
   locale: "en_CA",
   /** set NEXT_PUBLIC_CONTACT_EMAIL in the environment; kept out of source on purpose */
